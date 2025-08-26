@@ -18,6 +18,16 @@
       </div>
     </div>
 
+
+    <!-- 地图区域 -->
+    <div class="map-container">
+      <div class="map-header">
+        <h2>实时监控概览</h2>
+        <p>系统运行状态实时监控</p>
+      </div>
+      <MapView />
+    </div>
+
     <!-- 功能卡片区域 -->
     <div class="sections">
       <div
@@ -48,19 +58,14 @@
       </div>
     </div>
 
-    <!-- 地图区域 -->
-    <div class="map-container">
-      <div class="map-header">
-        <h2>实时监控概览</h2>
-        <p>系统运行状态实时监控</p>
-      </div>
-      <MapView />
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import MapView from '../components/MapView.vue'
+
+const router = useRouter()
 
 const sections = [
   {
@@ -96,7 +101,7 @@ const sections = [
 ];
 
 const navigateTo = (link: string) => {
-  window.open(link, '_blank')
+  router.push(link)
 }
 </script>
 
@@ -134,7 +139,7 @@ const navigateTo = (link: string) => {
 /* 标题区域 */
 .header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 0;
   position: relative;
   z-index: 2;
 }
@@ -227,7 +232,7 @@ const navigateTo = (link: string) => {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .section-card {

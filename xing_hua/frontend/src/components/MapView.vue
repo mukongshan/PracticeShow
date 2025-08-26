@@ -20,5 +20,9 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px #ccc;
+
+  /* 控制上下外边距 */
+  margin-top: 0;   /* 上方边距变小（原可能是 20px 或更大，现在减小） */
+  margin-bottom: 50px; /* 下方边距变大（下方留出更多空白） */
 }
 </style>
