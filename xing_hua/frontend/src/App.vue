@@ -1,44 +1,22 @@
 <!-- src/App.vue -->
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
+
+const route = useRoute()
 </script>
 
 <template>
   <div id="app">
-    <!-- 头部导航 -->
+    <!-- 顶部导航栏 -->
     <header class="app-header">
       <div class="header-content">
-        <!-- Logo区域 -->
-        <div class="logo-section">
-          <RouterLink to="/" class="logo-link">
-            <div class="logo-container">
-              <img
-                  alt="Vue logo"
-                  class="logo"
-                  src="@/assets/logo.svg"
-                  width="64"
-                  height="64"
-              />
-              <div class="logo-glow"></div>
-            </div>
-          </RouterLink>
-        </div>
-
-        <!-- 导航菜单 -->
-        <nav class="main-nav">
-          <RouterLink
-              to="/"
-              class="nav-link"
-              :class="{ 'active': $route.path === '/' }"
-          >
-            <span class="nav-text">控制台</span>
-            <div class="nav-indicator"></div>
-          </RouterLink>
-        </nav>
+        <h1 class="page-title">
+          {{ route.meta.title || '未命名页面' }}
+        </h1>
       </div>
     </header>
 
-    <!-- 主要内容区域 -->
+    <!-- 主体内容 -->
     <main class="main-content">
       <RouterView />
     </main>
@@ -52,6 +30,8 @@ html, body, #app {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+
 }
 html, body, #app {
   width: 100vw;
@@ -91,4 +71,6 @@ html, body, #app {
   min-height: 80px;
   box-sizing: border-box;
 }
+
+
 </style>

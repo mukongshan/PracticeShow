@@ -3,11 +3,19 @@
   <div class="container">
     <!-- 标题区域 -->
     <div class="header">
-      <h1 class="main-title">
-        <span class="title-text">控制台</span>
-        <div class="title-underline"></div>
-      </h1>
-      <p class="subtitle">管理系统总览</p>
+      <div class="header-bg"></div>
+      <div class="header-content">
+        <h1 class="main-title">
+          <span class="title-text">管理系统</span>
+          <div class="title-underline"></div>
+        </h1>
+        <p class="subtitle">智能化管理平台总览</p>
+        <div class="title-decoration">
+          <div class="deco-circle"></div>
+          <div class="deco-circle"></div>
+          <div class="deco-circle"></div>
+        </div>
+      </div>
     </div>
 
     <!-- 功能卡片区域 -->
@@ -21,7 +29,9 @@
       >
         <div class="card-content">
           <div class="card-icon">
-            <div class="icon-placeholder">{{ idx + 1 }}</div>
+            <div class="icon-background">
+              <div class="icon-number">{{ idx + 1 }}</div>
+            </div>
           </div>
           <div class="card-info">
             <h3 class="card-title">{{ item.title }}</h3>
@@ -34,11 +44,16 @@
           </div>
         </div>
         <div class="card-glow"></div>
+        <div class="card-border"></div>
       </div>
     </div>
 
     <!-- 地图区域 -->
     <div class="map-container">
+      <div class="map-header">
+        <h2>实时监控概览</h2>
+        <p>系统运行状态实时监控</p>
+      </div>
       <MapView />
     </div>
   </div>
@@ -48,12 +63,36 @@
 import MapView from '../components/MapView.vue'
 
 const sections = [
-  { title: '部分一', desc: '描述一', link: 'https://example.com/1' },
-  { title: '部分二', desc: '描述二', link: 'https://example.com/2' },
-  { title: '部分三', desc: '描述三', link: 'https://example.com/3' },
-  { title: '部分四', desc: '描述四', link: 'https://example.com/4' },
-  { title: '部分五', desc: '描述五', link: 'https://example.com/5' },
-  { title: '部分六', desc: '描述六', link: 'https://example.com/6' },
+  {
+    title: '数据分析中心',
+    desc: '集成大数据分析功能，提供多维度数据洞察和趋势预测。支持实时数据处理、可视化图表展示以及自定义报表生成，帮助您快速理解业务现状，发现潜在机会，做出更明智的决策。系统自动收集并分析各类业务数据，为您呈现清晰的数据画像。',
+    link: '/summary'
+  },
+  {
+    title: '用户管理系统',
+    desc: '全面的用户管理解决方案，支持用户注册、认证、权限分配和行为分析。提供直观的用户界面，便于管理员高效管理用户账户，设置不同级别的访问权限，跟踪用户活动记录。系统具备强大的安全机制，确保用户数据的完整性和隐私保护。',
+    link: 'https://example.com/2'
+  },
+  {
+    title: '项目管理工具',
+    desc: '现代化的项目管理平台，集成任务分配、进度跟踪、团队协作和时间管理功能。支持敏捷开发方法论，提供甘特图、看板视图等多种项目管理方式，帮助团队高效协作，按时交付高质量项目成果。实时同步项目状态，确保所有成员信息一致。',
+    link: 'https://example.com/3'
+  },
+  {
+    title: '财务监控面板',
+    desc: '实时财务数据监控和分析工具，提供收入支出统计、预算管理和财务报表功能。支持多维度财务数据分析，帮助您掌握资金流向，优化财务结构，确保企业财务健康。系统自动生成各类财务报表，为管理层提供决策支持。',
+    link: 'https://example.com/4'
+  },
+  {
+    title: '安全防护系统',
+    desc: '企业级安全防护解决方案，集成网络安全、数据加密和访问控制功能。实时监控系统安全状态，及时发现并阻止潜在威胁。提供多层次的安全防护机制，包括防火墙、入侵检测和数据备份恢复功能，确保您的数字资产安全无忧。',
+    link: 'https://example.com/5'
+  },
+  {
+    title: '客户服务模块',
+    desc: '智能化的客户服务平台，提供工单管理、客户反馈收集和满意度调查功能。支持多渠道客户沟通，包括邮件、电话和在线聊天。系统自动记录客户交互历史，帮助客服团队提供个性化服务，提升客户满意度和忠诚度。',
+    link: 'https://example.com/6'
+  },
 ];
 
 const navigateTo = (link: string) => {
@@ -97,6 +136,24 @@ const navigateTo = (link: string) => {
   text-align: center;
   margin-bottom: 60px;
   position: relative;
+  z-index: 2;
+}
+
+.header-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(102, 126, 234, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.header-content {
+  position: relative;
+  z-index: 2;
 }
 
 .main-title {
@@ -131,15 +188,44 @@ const navigateTo = (link: string) => {
 .subtitle {
   font-size: 1.2rem;
   color: #a0a0a0;
-  margin: 0;
+  margin: 0 0 20px 0;
   font-weight: 300;
   letter-spacing: 0.05em;
+}
+
+.title-decoration {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.deco-circle {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: pulse 2s infinite;
+}
+
+.deco-circle:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.deco-circle:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
 }
 
 /* 卡片区域 */
 .sections {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-bottom: 60px;
 }
@@ -157,6 +243,9 @@ const navigateTo = (link: string) => {
   animation: fadeInUp 0.6s ease-out forwards;
   opacity: 0;
   transform: translateY(30px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .section-card:hover {
@@ -170,13 +259,19 @@ const navigateTo = (link: string) => {
 
 .section-card:hover .card-glow {
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.02);
+}
+
+.section-card:hover .card-border {
+  opacity: 1;
+  transform: scale(1.02);
 }
 
 .card-content {
   display: flex;
   align-items: flex-start;
   gap: 16px;
+  flex: 1;
   position: relative;
   z-index: 2;
 }
@@ -185,6 +280,11 @@ const navigateTo = (link: string) => {
   flex-shrink: 0;
   width: 48px;
   height: 48px;
+}
+
+.icon-background {
+  width: 100%;
+  height: 100%;
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
   border: 1px solid rgba(102, 126, 234, 0.3);
   border-radius: 12px;
@@ -194,7 +294,7 @@ const navigateTo = (link: string) => {
   position: relative;
 }
 
-.icon-placeholder {
+.icon-number {
   font-size: 1.2rem;
   font-weight: 600;
   color: #667eea;
@@ -209,7 +309,7 @@ const navigateTo = (link: string) => {
 .card-title {
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 8px 0;
+  margin: 0 0 12px 0;
   color: #ffffff;
   line-height: 1.3;
 }
@@ -217,9 +317,10 @@ const navigateTo = (link: string) => {
 .card-desc {
   font-size: 0.95rem;
   color: #b0b0b0;
-  margin: 0;
-  line-height: 1.5;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
   font-weight: 400;
+  flex: 1;
 }
 
 .card-arrow {
@@ -250,12 +351,45 @@ const navigateTo = (link: string) => {
   pointer-events: none;
 }
 
+.card-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  border-radius: 16px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
 /* 地图容器 */
 .map-container {
   margin-top: 40px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.map-header {
+  background: rgba(26, 26, 46, 0.8);
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.map-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.map-header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #b0b0b0;
 }
 
 /* 动画 */
@@ -292,6 +426,11 @@ const navigateTo = (link: string) => {
   .subtitle {
     font-size: 1rem;
   }
+
+  .header-bg {
+    width: 400px;
+    height: 200px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -310,6 +449,18 @@ const navigateTo = (link: string) => {
   .card-icon {
     width: 40px;
     height: 40px;
+  }
+
+  .icon-number {
+    font-size: 1rem;
+  }
+
+  .map-header {
+    padding: 16px 20px;
+  }
+
+  .map-header h2 {
+    font-size: 1.3rem;
   }
 }
 </style>
